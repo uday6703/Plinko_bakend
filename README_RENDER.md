@@ -45,3 +45,13 @@ This document contains step-by-step instructions to deploy the `backend` service
 Notes & tips
  - If you prefer to keep using SQLite, you can set `DATABASE_URL="file:./dev.db"` in Render, but the DB file is ephemeral and will be lost on redeploys.
  - If `npx prisma migrate deploy` fails on Render, you can run migrations manually against the Render Postgres instance using a local `DATABASE_URL` pointing at it, then push the migration files.
+
+## Environment variables
+
+Create a `.env` file in `backend/` or set environment variables in the Render dashboard. Required variables:
+
+- `DATABASE_URL` — Postgres connection string provided by Render (or your DB). Example: `postgresql://user:pass@host:5432/dbname`
+- `FRONTEND_URL` — URL of the frontend site (e.g. `https://pinko-frontend-1kqm.vercel.app` or `http://localhost:3000`)
+- `PORT` — optional; defaults to `5000`.
+
+I added a `.env.example` file to the `backend/` directory showing these values — copy it to `.env` and fill in your DB connection before running migrations locally.
