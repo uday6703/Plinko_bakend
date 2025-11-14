@@ -1,0 +1,33 @@
+# Node dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# SQLite / Prisma database files
+dev.db
+dev.db-journal
+.prisma/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / output
+dist/
+build/
+
+# Test coverage
+coverage/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Misc
+*.sqlite
+*.sqlite3
+*.db
