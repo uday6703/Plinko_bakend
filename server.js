@@ -9,14 +9,26 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   'http://localhost:3000',
-  process.env.FRONTEND_URL || 'https://pinko-frontend-gamma.vercel.app'
+  'https://pinko-frontend-1kqm.vercel.app',
+  process.env.FRONTEND_URL || 'https://plinko-frontend-gamma.vercel.app'
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g. curl, mobile apps, or same-origin)
     if (!origin) return callback(null, true);
+
+    // Exact matches from the allowlist
     if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
+
+    // Allow Vercel preview/production domains (any subdomain of vercel.app)
+    try {
+      const host = new URL(origin).hostname || '';
+      if (host.endsWith('.vercel.app')) return callback(null, true);
+    } catch (e) {
+      // fall through to rejection
+    }
+
     return callback(new Error('CORS policy: Origin not allowed'), false);
   },
   methods: 'GET,POST,PUT,DELETE',

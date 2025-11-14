@@ -12,6 +12,9 @@
   "keywords": ["plinko", "game", "provably-fair", "express"],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=18 <23"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
